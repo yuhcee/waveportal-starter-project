@@ -55,6 +55,25 @@ export default function App() {
         }
     };
 
+    const wave = async () => {
+        try {
+            const { ethereum } = typeof window !== undefined && window;
+
+            if (ethereum) {
+                const provider = new ethers.providers.Web3Provider(ethereum);
+                const signer = provider.getSigner();
+                const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+                let count = await wavePortalContract.getTotalWaves();
+                console.log('Retrieved total wave count...', count.toNumber());
+            } else {
+                console.log('Ethereum Object does not exist!');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     useEffect(() => {
         checkIfWalletIsConnected();
     }, []);
@@ -69,7 +88,7 @@ export default function App() {
                     Hey there!
                 </div>
                 <div className="bio">I am Yuhcee and I am learning about blockchain and cryptocurrencies. That's pretty cool right? Connect your Ethereum(Metamask) wallet and wave at me!</div>
-                <button className="waveButton" onClick={''}>
+                <button className="waveButton" onClick={wave}>
                     Wave at Me
                 </button>
                 {!currentAccount && (
