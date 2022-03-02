@@ -67,6 +67,12 @@ export default function App() {
                 const signer = provider.getSigner();
                 const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+                const waveTxn = await wavePortalContract.wave();
+                console.log('Mining ---> ', waveTxn.hash);
+
+                await waveTxn.wait();
+                console.log('Mined --->', waveTxn.hash);
+
                 let count = await wavePortalContract.getTotalWaves();
                 console.log('Retrieved total wave count...', count.toNumber());
             } else {
