@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
+import ContractABI from './utils/WavePortal.json';
 import './App.css';
 
 export default function App() {
@@ -7,6 +8,8 @@ export default function App() {
      * Just a state variable we use to store our user's public wallet.
      */
     const [currentAccount, setCurrentAccount] = useState('');
+    const contractABI = ContractABI.abi;
+    const contractAddress = '0xbF92fE7D6c54eEAD3D83317994D54FF4Db838d44';
 
     const checkIfWalletIsConnected = async () => {
         try {
