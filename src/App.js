@@ -9,7 +9,7 @@ export default function App() {
      */
     const [currentAccount, setCurrentAccount] = useState('');
     const contractABI = ContractABI.abi;
-    const contractAddress = '0xbF92fE7D6c54eEAD3D83317994D54FF4Db838d44';
+    const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
     const checkIfWalletIsConnected = async () => {
         try {
